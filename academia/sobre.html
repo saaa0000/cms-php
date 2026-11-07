@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sobre - Star Fitness</title>
+<link rel="icon" type="jpg" href="img\logo1.jpg">
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f0f12;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left,#8017c740,transparent 35%),
+    radial-gradient(circle at bottom right,#5f0fa040,transparent 35%);
+
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 50px;
+
+    background:rgba(10,10,10,0.92);
+
+    backdrop-filter:blur(10px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    text-decoration:none;
+}
+
+.logo img{
+    width: 170px;
+    height: 65px;
+
+    border-radius: 14px;
+
+    object-fit: cover;
+
+    box-shadow: 0 0 25px rgba(128,23,199,0.5);
+}
+.logo h1{
+    font-size:28px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ffffff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MENU */
+
+.menu a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    position:relative;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:1;
+}
+
+.menu a::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #3f0069,
+        #b84dff
+    );
+
+    border-radius:12px;
+
+    transform:translateX(-50%);
+    transition:0.35s ease;
+
+    z-index:-1;
+}
+
+.menu a:hover::before{
+    width:100%;
+}
+
+.menu a:hover{
+    color:white;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#b84dff;
+
+    transform:translateX(-50%);
+    transition:0.3s;
+}
+
+.menu a:hover::after{
+    width:80%;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:160px 40px 100px;
+
+    position:relative;
+}
+
+.hero-box{
+    max-width:1300px;
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+/* TEXTO HERO */
+
+.hero-texto h2{
+    font-size:70px;
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    background:linear-gradient(90deg,#fff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-texto p{
+    font-size:20px;
+    color:#cfcfcf;
+    line-height:1.8;
+
+    margin-bottom:35px;
+}
+
+/* ESTATÍSTICAS */
+
+.stats{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    padding:20px 28px;
+
+    border-radius:20px;
+
+    min-width:160px;
+}
+
+.stat h3{
+    font-size:34px;
+    color:#c96fff;
+    margin-bottom:8px;
+}
+
+.stat p{
+    font-size:15px;
+    color:#bbb;
+}
+
+/* IMAGEM HERO */
+
+.hero-imagem{
+    position:relative;
+}
+
+.hero-imagem img{
+    width:100%;
+    border-radius:35px;
+
+    border:2px solid rgba(255,255,255,0.08);
+
+    box-shadow:0 0 40px rgba(128,23,199,0.35);
+}
+
+/* CARD FLUTUANTE */
+
+.card-flutuante{
+    position:absolute;
+
+    bottom:-30px;
+    left:-20px;
+
+    background:#181818;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+
+    max-width:260px;
+}
+
+.card-flutuante h4{
+    color:#c96fff;
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.card-flutuante p{
+    color:#ccc;
+    line-height:1.6;
+    font-size:15px;
+}
+
+/* HISTÓRIA */
+
+.historia{
+    max-width:1300px;
+    margin:auto;
+
+    padding:40px 40px 120px;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.titulo h2{
+    font-size:55px;
+    margin-bottom:15px;
+
+    background:linear-gradient(90deg,#fff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.titulo p{
+    color:#bbb;
+    font-size:18px;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#8017c7;
+}
+
+.card .icone{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:26px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#cfcfcf;
+    line-height:1.8;
+}
+
+/* LINHA DO TEMPO */
+
+.timeline{
+    margin-top:90px;
+
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.etapa{
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+
+    background:#171717;
+
+    padding:28px;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.ano{
+    min-width:110px;
+
+    height:110px;
+
+    background:linear-gradient(135deg,#8017c7,#5f0fa0);
+
+    border-radius:25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+    font-weight:bold;
+}
+
+.etapa-texto h3{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.etapa-texto p{
+    color:#cfcfcf;
+    line-height:1.9;
+}
+
+/* EQUIPE */
+
+.equipe{
+    margin-top:110px;
+}
+
+.membros{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+
+    margin-top:40px;
+}
+
+.membro{
+    background:#181818;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.3s;
+}
+
+.membro:hover{
+    transform:translateY(-10px);
+}
+
+.membro img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.membro-info{
+    padding:25px;
+}
+
+.membro-info h3{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.membro-info span{
+    color:#b84dff;
+    font-weight:bold;
+}
+
+.membro-info p{
+    color:#ccc;
+    line-height:1.7;
+    margin-top:15px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0a0a0a;
+
+    padding:35px;
+    text-align:center;
+
+    color:#888;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:950px){
+
+    .hero-box{
+        grid-template-columns:1fr;
+    }
+
+    .hero-texto{
+        text-align:center;
+    }
+
+    .stats{
+        justify-content:center;
+    }
+
+    .hero-texto h2{
+        font-size:50px;
+    }
+
+    .card-flutuante{
+        position:relative;
+        left:0;
+        bottom:0;
+        margin-top:20px;
+    }
+
+    .etapa{
+        flex-direction:column;
+    }
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="Academia.html" class="logo">
+
+        <img src="img/logo2.jpg">
+
+        <h1>Star Fitness</h1>
+
+    </a>
+
+    <div class="menu">
+
+        <a href="Academia.html">Início</a>
+        <a href="planos.html">Planos</a>
+        <a href="treinos.html">Treinos</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+        <a class="entrar" href="login.html">Login</a>
+        <a class="cadastrar" href="cadastro.html">Cadastro</a>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-box">
+
+        <div class="hero-texto">
+
+            <h2>
+                A academia não é sobre perfeição, é sobre evolução.
+            </h2>
+
+            <p>
+                A Star Fitness nasceu com o objetivo de criar um ambiente moderno,
+                motivador e acolhedor para transformar vidas através do treino.
+                Aqui cada detalhe foi pensado para entregar evolução real,
+                equipamentos modernos e uma experiência premium para nossos alunos.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3>2024</h3>
+                    <p>Inauguração oficial</p>
+                </div>
+
+                <div class="stat">
+                    <h3>+500</h3>
+                    <p>Alunos atendidos</p>
+                </div>
+
+                <div class="stat">
+                    <h3>100%</h3>
+                    <p>Foco em evolução</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-imagem">
+
+            <img src="img/personal sobre.png">
+
+        <div class="card-flutuante">
+
+            <h4> Ambiente Premium</h4>
+
+            <p>
+                Equipamentos modernos, espaço confortável
+                e evolução constante para oferecer a melhor experiência.
+            </p>
+
+        </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HISTÓRIA -->
+
+<section class="historia">
+
+    <div class="titulo">
+
+        <h2>Nossa História</h2>
+
+        <p>
+            Uma trajetória construída com dedicação, evolução e paixão pelo fitness.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icone"></div>
+
+            <h3>Estrutura Moderna</h3>
+
+            <p>
+                A Star Fitness passou por diversas melhorias desde sua abertura,
+                trazendo novos equipamentos, iluminação moderna e um ambiente mais confortável.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icone"></div>
+
+            <h3>Evolução Constante</h3>
+
+            <p>
+                Nosso espaço continua crescendo para oferecer mais qualidade,
+                desempenho e inovação para todos os alunos.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icone"></div>
+
+            <h3>Treinos Intensos</h3>
+
+            <p>
+                Criamos um ambiente motivador para quem busca resultados reais,
+                saúde e superação diária.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icone"></div>
+
+            <h3>Comunidade</h3>
+
+            <p>
+                Mais do que uma academia, a Star Fitness é uma comunidade
+                onde cada aluno recebe apoio e incentivo para evoluir.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- TIMELINE -->
+
+    <div class="timeline">
+
+        <div class="etapa">
+
+            <div class="ano">2022</div>
+
+            <div class="etapa-texto">
+
+                <h3>O começo do projeto</h3>
+
+                <p>
+                    Em 2022 e 2023 começamos o planejamento da Star Fitness,
+                    estudando ideias, estrutura e criando o projeto da academia.
+                    Nosso objetivo sempre foi trazer um ambiente diferenciado,
+                    moderno e focado na evolução dos alunos.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="etapa">
+
+            <div class="ano">2024</div>
+
+            <div class="etapa-texto">
+
+                <h3>Inauguração oficial</h3>
+
+                <p>
+                    No final de 2024 a Star Fitness abriu oficialmente suas portas.
+                    Desde os primeiros dias buscamos oferecer qualidade,
+                    equipamentos modernos e um ambiente confortável para todos.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="etapa">
+
+            <div class="ano">Hoje</div>
+
+            <div class="etapa-texto">
+
+                <h3>Novas melhorias</h3>
+
+                <p>
+                    De lá pra cá tivemos grandes mudanças:
+                    melhorias no espaço interno, novos aparelhos,
+                    iluminação moderna, mais conforto,
+                    expansão dos treinos e um ambiente cada vez mais profissional.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- EQUIPE -->
+
+    <div class="equipe">
+
+        <div class="titulo">
+
+            <h2>Nossa Equipe</h2>
+
+            <p>
+                Profissionais preparados para ajudar você a alcançar resultados reais.
+            </p>
+
+        </div>
+
+        <div class="membros">
+
+            <div class="membro">
+
+                <img src="Z:\academia\academia\img\personal 1.jpg">
+
+                <div class="membro-info">
+
+                    <h3>Equipe Star Fitness</h3>
+
+                    <span>Treinamento & Performance</span>
+
+                    <p>
+                        Nossa equipe trabalha diariamente para oferecer suporte,
+                        motivação e acompanhamento durante toda sua evolução.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="membro">
+
+                <img src="Z:\academia\academia\img\personal 2.jpg">
+
+                <div class="membro-info">
+
+                    <h3>Atendimento Premium</h3>
+
+                    <span>Experiência Completa</span>
+
+                    <p>
+                        Buscamos criar um ambiente acolhedor,
+                        confortável e preparado para todos os níveis de treino.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="membro">
+
+                <img src="Z:\academia\academia\img\personal 3.jpg">
+
+                <div class="membro-info">
+
+                    <h3>Foco em Evolução</h3>
+
+                    <span>Resultados Reais</span>
+
+                    <p>
+                        Cada melhoria da Star Fitness é pensada para ajudar
+                        nossos alunos a alcançarem seus objetivos mais rápido.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 Star Fitness • Todos os direitos reservados
+
+</footer>
+
+</body>
+</html>

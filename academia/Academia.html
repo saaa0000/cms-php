@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Star Fitness</title>
+
+<link rel="icon" type="jpg" href="img\logo1.png">
+
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0b0f;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+    content:"";
+    position:fixed;
+    top:-200px;
+    right:-200px;
+
+    width:500px;
+    height:500px;
+
+    background:#8017c7;
+
+    opacity:0.15;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    bottom:-200px;
+    left:-200px;
+
+    width:500px;
+    height:500px;
+
+    background:#5f0fa0;
+
+    opacity:0.12;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 50px;
+
+    background:rgba(10,10,15,0.75);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    text-decoration:none;
+}
+
+.logo img{
+    width: 170px;
+    height: 65px;
+    border-radius: 14px; /* <- aqui */
+    object-fit: cover;
+    box-shadow: 0 0 25px rgba(128,23,199,0.5);
+
+}
+
+.logo h1{
+    font-size:28px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ffffff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MENU */
+
+.menu a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    position:relative;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:1;
+}
+
+.menu a::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #3c0164,
+        #b84dff
+    );
+
+    border-radius:12px;
+
+    transform:translateX(-50%);
+    transition:0.35s ease;
+
+    z-index:-1;
+}
+
+.menu a:hover::before{
+    width:100%;
+}
+
+.menu a:hover{
+    color:white;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#b84dff;
+
+    transform:translateX(-50%);
+    transition:0.3s;
+}
+
+.menu a:hover::after{
+    width:80%;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:140px 70px 80px;
+
+    gap:50px;
+
+    flex-wrap:wrap;
+}
+
+.hero-texto{
+    flex:1;
+    min-width:300px;
+}
+
+.tag{
+    display:inline-block;
+
+    background:rgba(128,23,199,0.18);
+
+    border:1px solid rgba(184,77,255,0.3);
+
+    color:#d7a7ff;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.hero h2{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+
+    max-width:700px;
+}
+
+.hero h2 span{
+    color:#b84dff;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:20px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+/* BOTÕES */
+
+.botoes{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-top:40px;
+}
+
+.btn{
+    display:inline-block;
+
+    padding:16px 34px;
+
+    border-radius:60px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.btn-roxo{
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+    color:white;
+
+    box-shadow:0 0 30px rgba(128,23,199,0.5);
+}
+
+.btn-roxo:hover{
+    transform:translateY(-4px);
+}
+
+.btn-escuro{
+    background:#1b1b22;
+    color:white;
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.btn-escuro:hover{
+    background:#23232c;
+}
+
+/* CARD HERO */
+
+.hero-card{
+    width:380px;
+
+    background:rgba(25,25,35,0.75);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:35px;
+
+    padding:30px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 0 50px rgba(0,0,0,0.5);
+}
+
+.hero-card img{
+    width:100%;
+    border-radius:25px;
+}
+
+.card-info{
+    margin-top:20px;
+}
+
+.card-info h3{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.card-info p{
+    color:#bbb;
+    line-height:1.6;
+}
+
+.card-status{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.status-box{
+    background:#15151d;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    width:48%;
+
+    text-align:center;
+}
+
+.status-box h4{
+    color:#b84dff;
+    font-size:22px;
+}
+
+/* LOJA */
+
+.loja{
+    padding:100px 30px;
+}
+
+.loja h2{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:15px;
+
+    color:#b84dff;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#aaa;
+    margin-bottom:70px;
+}
+
+.categoria{
+    margin-bottom:90px;
+}
+
+.categoria h3{
+    font-size:34px;
+    margin-bottom:30px;
+}
+
+/* CARDS */
+
+.cards-loja{
+    display:flex;
+    gap:25px;
+
+    overflow-x:auto;
+
+    padding-bottom:10px;
+
+    scroll-behavior:smooth;
+}
+
+.cards-loja::-webkit-scrollbar{
+    height:8px;
+}
+
+.cards-loja::-webkit-scrollbar-thumb{
+    background:#8017c7;
+    border-radius:20px;
+}
+
+.produto{
+    min-width:280px;
+
+    background:linear-gradient(180deg,#1a1a22,#101015);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+
+    transition:0.3s;
+}
+
+.produto:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(128,23,199,0.3);
+}
+
+.produto img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.puma-img{
+    width:100%;
+    height:230px;
+    object-fit:contain;
+    background:#151515;
+    padding:15px;
+}
+
+.produto h4{
+    margin:18px 18px 10px;
+    font-size:24px;
+}
+
+.produto p{
+    margin:0 18px 10px;
+    color:#aaa;
+}
+
+.produto span{
+    display:block;
+    margin:0 18px 20px;
+
+    color:#b84dff;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.produto a{
+    display:inline-block;
+
+    margin:0 18px 20px;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0a0a0f;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.social{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.social a{
+    text-decoration:none;
+    color:white;
+
+    background:#1a1a22;
+
+    padding:12px 20px;
+
+    border-radius:50px;
+
+    transition:0.3s;
+}
+
+.social a:hover{
+    background:#8017c7;
+}
+
+footer p{
+    color:#777;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:950px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .hero{
+        padding:160px 25px 80px;
+        text-align:center;
+        justify-content:center;
+    }
+
+    .hero h2{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .botoes{
+        justify-content:center;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .hero-card{
+        width:100%;
+        max-width:400px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="Academia.html" class="logo">
+
+        <img src="Z:\academia\academia\img\Logo2.jpg">
+
+        <h1>Star Fitness</h1>
+
+    </a>
+
+    <div class="menu">
+
+        <a href="Academia.html">Início</a>
+        <a href="planos.html">Planos</a>
+        <a href="treinos.html">Treinos</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+        <a class="entrar" href="login.html">Login</a>
+        <a class="cadastrar" href="cadastro.html">Cadastro</a>
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-texto">
+
+        <div class="tag">
+             Academia • Loja Fitness • Performance
+        </div>
+
+        <h2>
+            Evolua seu corpo com a
+            <span>nova geração fitness</span>
+        </h2>
+
+        <p>
+            Estrutura moderna, produtos premium e treinos
+            desenvolvidos para levar sua performance
+            ao próximo nível.
+        </p>
+
+        <div class="botoes">
+
+            <a href="planos.html" class="btn btn-roxo">
+                Começar Agora
+            </a>
+
+            <a href="#loja" class="btn btn-escuro">
+                Ver Produtos
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-card">
+
+        <img src="img/logo1.png">
+
+        <div class="card-info">
+
+            <h3>Star Fitness</h3>
+
+            <p>
+                Performance, tecnologia e motivação
+                em um só lugar.
+            </p>
+
+            <div class="card-status">
+
+                <div class="status-box">
+                    <h4>+5K</h4>
+                    <span>Alunos</span>
+                </div>
+
+                <div class="status-box">
+                    <h4>24h</h4>
+                    <span>Energia</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LOJA -->
+
+<section class="loja" id="loja">
+
+    <h2>Loja Fitness</h2>
+
+    <p class="subtitulo">
+        Arraste para o lado e veja todos os produtos →
+    </p>
+
+    <!-- TENIS -->
+
+    <div class="categoria">
+
+        <h3> Tênis</h3>
+
+        <div class="cards-loja">
+
+            <div class="produto">
+                <img src="img/nike pro.jpg">
+                <h4>Nike Pro</h4>
+                <p>Treino pesado</p>
+                <span>R$ 249</span>
+                <a href="nike%20pro.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="img/adidas fit.jpg">
+                <h4>Adidas Fit</h4>
+                <p>Conforto máximo</p>
+                <span>R$ 229</span>
+                <a href="adidas%20fit.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\puma energy.png" class="puma-img">
+                <h4>Puma Energy</h4>
+                <p>Corrida intensa</p>
+                <span>R$ 279</span>
+                <a href="puma%20energy.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="img/olympikus run.jpg">
+                <h4>Olympikus Run</h4>
+                <p>Leve e resistente</p>
+                <span>R$ 199</span>
+                <a href="olympikus%20run.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="img/mizumo wave.jpg">
+                <h4>Mizuno Wave</h4>
+                <p>Performance premium</p>
+                <span>R$ 349</span>
+                <a href="mizuno%20wave.html">Comprar</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ROUPAS -->
+
+    <div class="categoria">
+
+        <h3> Roupas</h3>
+
+        <div class="cards-loja">
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\camisa dry fit.jpg">
+                <h4>Camiseta Dry Fit</h4>
+                <p>Masculino</p>
+                <span>R$ 79</span>
+                <a href="camisa_dry_fit.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\conjunto legging.jpg">
+                <h4>Conjunto Legging Fitness</h4>
+                <p>Feminino</p>
+                <span>R$ 119</span>
+                <a href="conjunto%20legging.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\Short Esportivo.jpg">
+                <h4>Short Esportivo</h4>
+                <p>Treino confortável</p>
+                <span>R$ 79</span>
+                <a href="short%20esportivo.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\top para academia.jpg">
+                <h4>Top Academia</h4>
+                <p>Alta sustentação</p>
+                <span>R$ 89</span>
+                <a href="top%20para%20academia.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\jaqueta academia.jpg">
+                <h4>Jaqueta Fitness</h4>
+                <p>Treino no frio</p>
+                <span>R$ 159</span>
+                <a href="jaqueta%20para%20academia.html">Comprar</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SUPLEMENTOS -->
+
+    <div class="categoria">
+
+        <h3> Suplementos</h3>
+
+        <div class="cards-loja">
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\Whey protein.jpg">
+                <h4>Whey Protein</h4>
+                <p>Massa muscular</p>
+                <span>R$ 149</span>
+                <a href="whay%20protein.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\creatina.jpg">
+                <h4>Creatina</h4>
+                <p>Mais força</p>
+                <span>R$ 89</span>
+                <a href="creatina.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\Pre treino.jpg">
+                <h4>Pré-Treino</h4>
+                <p>Mais energia</p>
+                <span>R$ 99</span>
+                <a href="pre%20_treino.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\barrinha.jpg">
+                <h4>Barrinha Protein</h4>
+                <p>Lanche fitness</p>
+                <span>R$ 12</span>
+                <a href="barrinha.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\BCAA.jpg">
+                <h4>BCAA</h4>
+                <p>Recuperação muscular</p>
+                <span>R$ 79</span>
+                <a href="BCAA.html">Comprar</a>
+            </div>
+
+            <div class="produto">
+                <img src="Z:\academia\academia\img\hipercalorico.jpg">
+                <h4>Hipercalórico</h4>
+                <p>Ganho de massa</p>
+                <span>R$ 139</span>
+                <a href="hipercalorico.html">Comprar</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="social">
+
+        <a href="https://instagram.com">Instagram</a>
+
+        <a href="https://facebook.com">Facebook</a>
+
+        <a href="mailto:starfitness@email.com">Email</a>
+
+        <a href="https://wa.me/5575999999999">
+            WhatsApp
+        </a>
+
+    </div>
+
+    <p>
+        © 2026 Star Fitness
+    </p>
+
+</footer>
+
+</body>
+</html>

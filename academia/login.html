@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Login | Star Fitness</title>
+<style>
+:root{
+  --bg:#0b0a12; --panel:#15131f; --ink:#fff; --muted:#a9a4bd; --line:#2c2840;
+  --p1:#d58bff; --p2:#a855f7; --p3:#7c3aed;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; gap:24px; padding:28px 20px 40px;
+  background:var(--bg); color:var(--ink);
+  font:400 16px/1.5 Arial,Helvetica,sans-serif;
+}
+.logo{font-size:1.7rem; font-weight:700; color:var(--ink); text-decoration:none}
+.logo span{
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+form{
+  width:100%; max-width:420px; background:var(--panel);
+  border:1px solid var(--line); border-radius:16px; padding:30px 26px;
+}
+h1{margin:0 0 4px; font-size:1.5rem}
+.sub{margin:0 0 22px; color:var(--muted); font-size:.95rem}
+.campo{margin-bottom:14px}
+label{display:block; margin-bottom:6px; font-weight:700; font-size:.9rem}
+input{
+  width:100%; padding:12px 14px; font:inherit; color:var(--ink);
+  background:transparent; border:1px solid var(--line); border-radius:10px;
+  transition:border-color .2s, box-shadow .2s;
+}
+input:focus{outline:none; border-color:var(--p2); box-shadow:0 0 0 3px rgba(168,85,247,.3)}
+input:user-invalid{border-color:#f0647a}
+
+/* Botão Entrar: transição para roxo no hover */
+button{
+  width:100%; margin-top:8px; padding:13px; font:700 1rem Arial,Helvetica,sans-serif;
+  color:#fff; background:#2b2455; border:0; border-radius:10px; cursor:pointer;
+  transition:background-color .35s ease;
+}
+button:hover{background:var(--p3)}
+
+.aviso{margin:22px 0 12px; text-align:center; color:var(--muted); font-size:.92rem}
+
+/* Botão Cadastrar-se: sempre roxo */
+.cadastrar{
+  display:block; width:100%; padding:13px; text-align:center; text-decoration:none;
+  font:700 1rem Arial,Helvetica,sans-serif; color:#fff; background:var(--p3);
+  border-radius:10px; transition:background-color .35s ease;
+}
+.cadastrar:hover{background:var(--p2)}
+
+button:focus-visible,.cadastrar:focus-visible,a:focus-visible{
+  outline:3px solid var(--p1); outline-offset:3px; border-radius:6px;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="logo" href="index.html">Star <span>Fitness</span></a>
+
+<form action="#" onsubmit="event.preventDefault()">
+  <h1>Login</h1>
+  <p class="sub">Acesse sua conta Star Fitness.</p>
+
+  <div class="campo">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" autocomplete="email"
+           placeholder="@exemplo.com" required>
+  </div>
+
+  <div class="campo">
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" autocomplete="current-password"
+           minlength="6" placeholder="Sua senha" required>
+  </div>
+
+  <button type="submit">Entrar</button>
+
+  <p class="aviso">Ainda não tem cadastro?</p>
+  <a class="cadastrar" href="cadastro(1).html">Cadastrar-se</a>
+</form>
+
+</body>
+</html>

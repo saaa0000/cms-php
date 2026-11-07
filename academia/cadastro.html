@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cadastro | Star Fitness</title>
+<style>
+:root{
+  --bg:#0b0a12; --panel:#15131f; --ink:#fff; --muted:#a9a4bd; --line:#2c2840;
+  --p1:#d58bff; --p2:#a855f7; --p3:#7c3aed;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; gap:24px; padding:28px 20px 40px;
+  background:var(--bg); color:var(--ink);
+  font:400 16px/1.5 Arial,Helvetica,sans-serif;
+}
+.logo{font-size:1.7rem; font-weight:700; color:var(--ink); text-decoration:none}
+.logo span{
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+form{
+  width:100%; max-width:420px; background:var(--panel);
+  border:1px solid var(--line); border-radius:16px; padding:30px 26px;
+}
+h1{margin:0 0 4px; font-size:1.5rem}
+.sub{margin:0 0 22px; color:var(--muted); font-size:.95rem}
+.campo{margin-bottom:14px}
+label{display:block; margin-bottom:6px; font-weight:700; font-size:.9rem}
+input[type=text],input[type=email],input[type=tel],input[type=password],input[type=date]{
+  width:100%; padding:12px 14px; font:inherit; color:var(--ink);
+  background:transparent; border:1px solid var(--line); border-radius:10px;
+  transition:border-color .2s, box-shadow .2s;
+}
+input:focus{
+  outline:none; border-color:var(--p2);
+  box-shadow:0 0 0 3px rgba(168,85,247,.3);
+}
+input:user-invalid{border-color:#f0647a}
+input[type=date]{color-scheme:dark; margin-bottom:0}
+
+/* Botão com transição para roxo */
+button{
+  width:100%; margin-top:8px; padding:13px; font:700 1rem Arial,Helvetica,sans-serif;
+  color:#fff; background:#2b2455; border:0; border-radius:10px; cursor:pointer;
+  transition:background-color .35s ease;
+}
+button:hover{background:var(--p3)}
+button:focus-visible,a:focus-visible{
+  outline:3px solid var(--p1); outline-offset:3px; border-radius:6px;
+}
+.aviso{margin:18px 0 0; text-align:center; color:var(--muted); font-size:.92rem}
+.aviso a{color:var(--p2); font-weight:700; text-decoration:none}
+.aviso a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="logo" href="index.html">Star <span>Fitness</span></a>
+
+<form action="#" onsubmit="event.preventDefault()">
+  <h1>Criar conta</h1>
+  <p class="sub">Cadastre-se para acessar seus treinos e planos.</p>
+
+  <div class="campo">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome" autocomplete="name"
+           placeholder="" required>
+  </div>
+
+  <div class="campo">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" autocomplete="email"
+           placeholder="@exemplo.com" required>
+  </div>
+
+  <div class="campo">
+    <label for="telefone">Telefone</label>
+    <input type="tel" id="telefone" name="telefone" autocomplete="tel"
+           placeholder="" required>
+  </div>
+
+  <div class="campo">
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" autocomplete="new-password"
+           minlength="6" placeholder="Mínimo de 6 caracteres" required>
+  </div>
+
+  <div class="campo">
+    <label for="nascimento">Data de nascimento</label>
+    <input type="date" id="nascimento" name="nascimento" autocomplete="bday" required>
+  </div>
+
+  <button type="submit">Cadastrar-se</button>
+  <p class="aviso">Já tem conta? <a href="login(1).html">Entrar</a></p>
+</form>
+
+</body>
+</html>

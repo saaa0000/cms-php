@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Planos - Star Fitness</title>
+
+<link rel="icon" type="jpg" href="img\logo1.jpg">
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0b0f;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+    content:"";
+    position:fixed;
+    top:-200px;
+    right:-200px;
+
+    width:500px;
+    height:500px;
+
+    background:#8017c7;
+
+    opacity:0.15;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    bottom:-200px;
+    left:-200px;
+
+    width:500px;
+    height:500px;
+
+    background:#5f0fa0;
+
+    opacity:0.12;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 50px;
+
+    background:rgba(10,10,15,0.75);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    text-decoration:none;
+}
+
+.logo img{
+    width:170px;
+    height:65px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    box-shadow:0 0 25px rgba(128,23,199,0.5);
+}
+
+.logo h1{
+    font-size:28px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ffffff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MENU */
+
+.menu a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    position:relative;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:1;
+}
+
+.menu a::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #330155,
+        #b84dff
+    );
+
+    border-radius:12px;
+
+    transform:translateX(-50%);
+    transition:0.35s ease;
+
+    z-index:-1;
+}
+
+.menu a:hover::before{
+    width:100%;
+}
+
+.menu a:hover{
+    color:white;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#b84dff;
+
+    transform:translateX(-50%);
+    transition:0.3s;
+}
+
+.menu a:hover::after{
+    width:80%;
+}
+
+/* HERO */
+
+.hero{
+    padding:170px 30px 70px;
+    text-align:center;
+}
+
+.tag{
+    display:inline-block;
+
+    background:rgba(128,23,199,0.18);
+
+    border:1px solid rgba(184,77,255,0.3);
+
+    color:#d7a7ff;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.hero h2{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.hero h2 span{
+    color:#b84dff;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:20px;
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:30px;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+/* PLANOS */
+
+.plano{
+    width:300px;
+
+    background:linear-gradient(180deg,#1a1a22,#101015);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:30px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    position:relative;
+
+    transition:0.3s;
+
+    overflow:hidden;
+}
+
+.plano::before{
+    content:"";
+    position:absolute;
+    top:-50px;
+    right:-50px;
+
+    width:140px;
+    height:140px;
+
+    background:#8017c7;
+
+    opacity:0.15;
+
+    border-radius:50%;
+
+    filter:blur(20px);
+}
+
+.plano:hover{
+    transform:translateY(-10px);
+
+    box-shadow:0 0 35px rgba(128,23,199,0.3);
+}
+
+/* MAIS VENDIDO */
+
+.mais-vendido{
+    border:1px solid #b84dff;
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 40px rgba(128,23,199,0.35);
+}
+
+.badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    background:linear-gradient(90deg,#8017c7,#b84dff);
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+/* TITULO */
+
+.plano h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+/* PREÇO */
+
+.preco{
+    font-size:42px;
+    color:#b84dff;
+    font-weight:bold;
+}
+
+.preco-antigo{
+    color:#777;
+    text-decoration:line-through;
+    margin-top:10px;
+}
+
+.desconto{
+    color:#00ff88;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+/* TEXTO */
+
+.texto{
+    margin-top:30px;
+
+    color:#bbb;
+
+    line-height:2;
+}
+
+/* BOTÃO */
+
+button{
+    margin-top:30px;
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    font-size:16px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:80px;
+
+    background:#0a0a0f;
+
+    padding:35px;
+
+    text-align:center;
+
+    color:#777;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:950px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .hero{
+        padding-top:220px;
+    }
+
+    .hero h2{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .mais-vendido{
+        transform:none;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="Academia.html" class="logo">
+
+        <img src="Z:\academia\academia\img\Logo2.jpg">
+
+        <h1>Star Fitness</h1>
+
+    </a>
+
+    <div class="menu">
+
+        <a href="Academia.html">Início</a>
+        <a href="planos.html">Planos</a>
+        <a href="treinos.html">Treinos</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+        <a class="entrar" href="login.html">Login</a>
+        <a class="cadastrar" href="cadastro.html">Cadastro</a>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="tag">
+         Escolha o plano ideal para sua evolução
+    </div>
+
+    <h2>
+        Planos para sua
+        <span>melhor versão</span>
+    </h2>
+
+    <p>
+        Tenha acesso à estrutura premium da Star Fitness,
+        treinos modernos e acompanhamento para alcançar
+        resultados reais.
+    </p>
+
+</section>
+
+<!-- PLANOS -->
+
+<div class="container">
+
+    <!-- MENSAL -->
+
+    <div class="plano">
+
+        <h2>Mensal</h2>
+
+        <p class="preco">R$ 94,99</p>
+
+        <p class="texto">
+            ✔ Acesso à musculação<br>
+            ✔ Treinos básicos<br>
+            ✔ Horário comercial
+        </p>
+
+        <a href="https://wa.me/5575999999999?text=Olá!%20Quero%20assinar%20o%20Plano%20Mensal">
+
+            <button>
+                Assinar
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- SEMESTRAL -->
+
+    <div class="plano mais-vendido">
+
+        <div class="badge">
+             MAIS VENDIDO
+        </div>
+
+        <h2>Semestral</h2>
+
+        <p class="preco">R$ 454,99</p>
+
+        <p class="preco-antigo">
+            R$ 599,99
+        </p>
+
+        <p class="desconto">
+            COM DESCONTO
+        </p>
+
+        <p class="texto">
+            ✔ 6 meses de acesso<br>
+            ✔ Avaliação física<br>
+            ✔ Treinos personalizados<br>
+            ✔ Melhor custo-benefício
+        </p>
+
+        <a href="https://wa.me/5575999999999?text=Olá!%20Quero%20assinar%20o%20Plano%20Semestral">
+
+            <button>
+                Assinar agora
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- ANUAL -->
+
+    <div class="plano">
+
+        <h2>Anual</h2>
+
+        <p class="preco">R$ 796,99</p>
+
+        <p class="preco-antigo">
+            R$ 999,99
+        </p>
+
+        <p class="desconto">
+            COM DESCONTO
+        </p>
+
+        <p class="texto">
+            ✔ 12 meses de acesso<br>
+            ✔ 2 meses grátis<br>
+            ✔ Acesso VIP<br>
+            ✔ Treinos avançados
+        </p>
+
+        <a href="https://wa.me/5575999999999?text=Olá!%20Quero%20assinar%20o%20Plano%20Anual">
+
+            <button>
+                Assinar
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- FAMÍLIA -->
+
+    <div class="plano">
+
+        <h2>Família</h2>
+
+        <p class="preco">R$ 321,99</p>
+
+        <p class="preco-antigo">
+            R$ 399,99
+        </p>
+
+        <p class="desconto">
+            COM DESCONTO
+        </p>
+
+        <p class="texto">
+            ✔ Até 4 pessoas<br>
+            ✔ Acesso completo<br>
+            ✔ Ambiente familiar<br>
+            ✔ Economia garantida
+        </p>
+
+        <a href="https://wa.me/5575999999999?text=Olá!%20Quero%20assinar%20o%20Plano%20Família">
+
+            <button>
+                Assinar
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+
+    © 2026 Star Fitness
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contato - Star Fitness</title>
+<link rel="icon" type="jpg" href="img\logo1.jpg">
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0b0f;
+    color:white;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+
+    background:rgba(10,10,15,0.95);
+
+    border-bottom:1px solid rgba(180,77,255,0.25);
+
+    backdrop-filter:blur(10px);
+
+    z-index:1000;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    text-decoration:none;
+}
+
+.logo img{
+    width: 170px;
+    height: 65px;
+
+    border-radius: 14px;
+
+    object-fit: cover;
+
+    box-shadow: 0 0 25px rgba(128,23,199,0.5);
+}
+.logo h1{
+    font-size:28px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ffffff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MENU */
+
+.menu a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    position:relative;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:1;
+}
+
+.menu a::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #42006e,
+        #b84dff
+    );
+
+    border-radius:12px;
+
+    transform:translateX(-50%);
+    transition:0.35s ease;
+
+    z-index:-1;
+}
+
+.menu a:hover::before{
+    width:100%;
+}
+
+.menu a:hover{
+    color:white;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#b84dff;
+
+    transform:translateX(-50%);
+    transition:0.3s;
+}
+
+.menu a:hover::after{
+    width:80%;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:140px 70px 80px;
+
+    gap:50px;
+
+    flex-wrap:wrap;
+}
+
+.hero-texto{
+    flex:1;
+    min-width:300px;
+}
+
+.tag{
+    display:inline-block;
+
+    background:rgba(128,23,199,0.18);
+
+    border:1px solid rgba(184,77,255,0.3);
+
+    color:#d7a7ff;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.hero h2{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+
+    max-width:700px;
+}
+
+.hero h2 span{
+    color:#b84dff;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:20px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+
+/* HERO */
+
+.topo{
+
+    padding:170px 30px 80px;
+
+    text-align:center;
+
+    background:
+    radial-gradient(circle at top right,
+    rgba(128,23,199,0.35),
+    transparent 30%),
+
+    linear-gradient(180deg,#0b0b0f,#111);
+}
+
+.topo h2{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.topo span{
+    color:#b84dff;
+}
+
+.topo p{
+    color:#bbb;
+    font-size:20px;
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* CONTAINER */
+
+.contato-container{
+    max-width:1300px;
+
+    margin:auto;
+
+    display:flex;
+    gap:30px;
+
+    padding:0 30px 80px;
+
+    flex-wrap:wrap;
+}
+
+/* FORM */
+
+.formulario{
+    flex:1;
+    min-width:320px;
+
+    background:#15151d;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:30px;
+
+    padding:35px;
+}
+
+.formulario h3{
+    font-size:35px;
+    margin-bottom:30px;
+    color:#b84dff;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    color:#ddd;
+}
+
+.input-group input,
+.input-group textarea{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+    outline:none;
+
+    border-radius:15px;
+
+    background:#222230;
+
+    color:white;
+
+    font-size:16px;
+}
+
+.input-group textarea{
+    resize:none;
+    height:150px;
+}
+
+/* BOTÃO */
+
+.btn-enviar{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-enviar:hover{
+    transform:scale(1.03);
+}
+
+/* INFO */
+
+.info{
+    flex:1;
+    min-width:320px;
+
+    background:#15151d;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:30px;
+
+    padding:35px;
+}
+
+.info h3{
+    font-size:35px;
+    margin-bottom:30px;
+    color:#b84dff;
+}
+
+.info-item{
+    margin-bottom:28px;
+}
+
+.info-item h4{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.info-item p,
+.info-item a{
+    color:#bbb;
+    text-decoration:none;
+    line-height:1.8;
+    transition:0.3s;
+}
+
+.info-item a:hover{
+    color:#b84dff;
+}
+
+/* MAPA */
+
+.mapa{
+    margin-top:30px;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.mapa iframe{
+    width:100%;
+    height:300px;
+    border:none;
+}
+
+/* BOTÃO MAPA */
+
+.btn-mapa{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:14px 28px;
+
+    border-radius:50px;
+
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.btn-mapa:hover{
+    transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+    background:#0a0a0a;
+    padding:30px;
+    text-align:center;
+    color:#888;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .topo h2{
+        font-size:45px;
+    }
+
+    .contato-container{
+        padding:0 20px 70px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="Academia.html" class="logo">
+
+        <img src="Z:\academia\academia\img\Logo2.jpg">
+
+        <h1>Star Fitness</h1>
+
+    </a>
+
+    <div class="menu">
+
+        <a href="Academia.html">Início</a>
+        <a href="planos.html">Planos</a>
+        <a href="treinos.html">Treinos</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+        <a class="entrar" href="login.html">Login</a>
+        <a class="cadastrar" href="cadastro.html">Cadastro</a>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="topo">
+
+    <h2>
+        Entre em <span>Contato</span>
+    </h2>
+
+    <p>
+        Tire dúvidas, envie sugestões ou fale
+        diretamente com nossa equipe da Star Fitness.
+    </p>
+
+</section>
+
+<!-- CONTAINER -->
+
+<section class="contato-container">
+
+    <!-- FORMULÁRIO -->
+
+    <div class="formulario">
+
+        <h3>Fale Conosco</h3>
+
+        <form action="https://wa.me/5575999999999" method="GET">
+
+            <div class="input-group">
+
+                <label>Nome</label>
+
+                <input
+                type="text"
+                placeholder="Digite seu nome">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>E-mail</label>
+
+                <input
+                type="email"
+                placeholder="Digite seu e-mail">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Telefone</label>
+
+                <input
+                type="tel"
+                placeholder="(00) 00000-0000">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Mensagem</label>
+
+                <textarea
+                placeholder="Digite sua mensagem"></textarea>
+
+            </div>
+
+            <button class="btn-enviar">
+
+                Enviar pelo WhatsApp
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- INFO -->
+
+    <div class="info">
+
+        <h3>Informações</h3>
+
+        <div class="info-item">
+
+            <h4> Endereço</h4>
+
+            <p>
+                Agrovila 10<br>
+                Serra do Ramalho - Bahia
+            </p>
+
+        </div>
+
+        <div class="info-item">
+
+            <h4> Telefone</h4>
+
+            <a href="https://wa.me/5575999999999">
+
+                (75) 99999-9999
+
+            </a>
+
+        </div>
+
+        <div class="info-item">
+
+            <h4> E-mail</h4>
+
+            <a href="mailto:starfitness@email.com">
+
+                starfitness@email.com
+
+            </a>
+
+        </div>
+
+        <div class="info-item">
+
+            <h4> Horário</h4>
+
+            <p>
+                Segunda à Quinta: 05h às 21h<br>
+                Sexta: 05:30h às 17:30
+                Domingo: 08h às 10:30h
+            </p>
+
+        </div>
+
+        <!-- BOTÃO MAPA -->
+
+        <a
+        class="btn-mapa"
+        href="https://www.google.com/maps/search/?api=1&query=Agrovila+10+Serra+do+Ramalho+Bahia"
+        target="_blank">
+
+        <p>
+        Agrovila 10<br>
+        Serra do Ramalho - Bahia
+        </p>
+
+        </a>
+
+        <!-- MAPA -->
+
+        <!-- MAPA -->
+
+<div class="mapa">
+
+    <iframe
+    src="https://www.google.com/maps?q=-13.5326445,-43.6438472&hl=pt-BR&z=18&output=embed"
+    width="100%"
+    height="250"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy">
+    </iframe>
+
+</div>
+
+<!-- BOTÃO GOOGLE MAPS -->
+
+<div style="margin-top:20px; text-align:center;">
+
+    <a href="https://www.google.com/maps/place/Academia+Star+Fitness/@-13.5326445,-43.6438472,18z"
+    target="_blank"
+    style="
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    background:linear-gradient(90deg,#8017c7,#5f0fa0);
+    transition:0.3s;
+    ">
+
+         Ver localização no Google Maps
+
+    </a>
+
+</div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Star Fitness<br>
+    Todos os direitos reservados.
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Treinos - Star Fitness</title>
+
+<link rel="icon" type="jpg" href="img\logo1.jpg">
+
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0b0f;
+    color:white;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 50px;
+
+    background:rgba(10,10,15,0.75);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    text-decoration:none;
+}
+
+.logo img{
+    width: 170px;
+    height: 65px;
+
+    border-radius: 14px;
+
+    object-fit: cover;
+
+    box-shadow: 0 0 25px rgba(128,23,199,0.5);
+}
+.logo h1{
+    font-size:28px;
+    font-weight:bold;
+
+    background:linear-gradient(90deg,#ffffff,#b84dff);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.menu a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    position:relative;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:1;
+}
+
+.menu a::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #43016e,
+        #b84dff
+    );
+
+    border-radius:12px;
+
+    transform:translateX(-50%);
+    transition:0.35s ease;
+
+    z-index:-1;
+}
+
+.menu a:hover::before{
+    width:100%;
+}
+
+.menu a:hover{
+    color:white;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+
+    width:0;
+    height:2px;
+
+    background:#b84dff;
+
+    transform:translateX(-50%);
+    transition:0.3s;
+}
+
+.menu a:hover::after{
+    width:80%;
+}
+
+.hero-texto{
+    flex:1;
+    min-width:300px;
+}
+
+.tag{
+    display:inline-block;
+
+    background:rgba(128,23,199,0.18);
+
+    border:1px solid rgba(184,77,255,0.3);
+
+    color:#d7a7ff;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.hero h2{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+
+    max-width:700px;
+}
+
+.hero h2 span{
+    color:#b84dff;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:20px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+.hero{
+
+    height:320px;
+
+    padding:120px 40px 40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:
+    linear-gradient(rgba(124, 0, 207, 0.397), rgba(0,0,0,0.82)),
+    url("img/treino.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    position:relative;
+}
+
+.hero h1{
+    font-size:55px;
+    max-width:700px;
+    line-height:1;
+}
+
+.hero span{
+    color:#bf5fff;
+}
+
+.hero p{
+    margin-top:15px;
+    color:#ddd;
+    font-size:18px;
+    max-width:600px;
+    line-height:1.5;
+}
+
+/* CATEGORIAS */
+
+.categoria{
+    padding:70px 40px;
+}
+
+.categoria h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.subtitulo{
+    color:#999;
+    margin-bottom:35px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* CARD */
+
+.card{
+    background:#15151d;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#8017c7;
+}
+
+.card iframe{
+    width:100%;
+    height:180px;
+    border:none;
+}
+
+.card-conteudo{
+    padding:22px;
+}
+
+.card h3{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#bbb;
+    line-height:1.6;
+    margin-bottom:18px;
+}
+
+/* TAGS */
+
+.tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.tag{
+    background:#222;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    color:#b84dff;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+/* DICAS */
+
+.dicas{
+    padding:80px 40px;
+}
+
+.dicas h2{
+    font-size:45px;
+    margin-bottom:40px;
+}
+
+.dicas-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.dica{
+    background:#15151d;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:0.3s;
+}
+
+.dica:hover{
+    transform:translateY(-5px);
+    border-color:#8017c7;
+}
+
+.dica h3{
+    margin:18px 0;
+    color:#b84dff;
+}
+
+.dica p{
+    color:#bbb;
+    line-height:1.6;
+}
+
+/* ROTINA */
+
+.rotina{
+    padding:80px 40px;
+}
+
+.rotina h2{
+    font-size:45px;
+    margin-bottom:40px;
+}
+
+.rotina-box{
+    background:#15151d;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.rotina-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.dia{
+    background:#1c1c27;
+
+    border-radius:20px;
+
+    padding:25px;
+}
+
+.dia h3{
+    color:#b84dff;
+    margin-bottom:15px;
+}
+
+.dia p{
+    color:#ccc;
+    line-height:1.8;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0a0a0a;
+    padding:30px;
+    text-align:center;
+    color:#888;
+    margin-top:50px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .menu{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero{
+        padding:160px 25px 80px;
+    }
+
+    .categoria,
+    .dicas,
+    .rotina{
+        padding:60px 25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="Academia.html" class="logo">
+
+        <img src="Z:\academia\academia\img\Logo2.jpg">
+
+        <h1>Star Fitness</h1>
+
+    </a>
+
+    <div class="menu">
+
+        <a href="Academia.html">Início</a>
+        <a href="planos.html">Planos</a>
+        <a href="treinos.html">Treinos</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Evolua seu corpo com
+        <span>treinos profissionais</span>
+    </h1>
+
+    <p>
+        Acesse treinos completos para hipertrofia,
+        emagrecimento, cardio e definição muscular.
+        Aprenda com vídeos e melhore seus resultados.
+    </p>
+
+</section>
+
+<!-- TREINOS -->
+
+<section class="categoria">
+
+    <h2> Treinos em Alta</h2>
+
+    <p class="subtitulo">
+        Veja alguns treinos recomendados pela Star Fitness
+    </p>
+
+    <div class="grid">
+
+        <!-- CARD 1 -->
+
+        <div class="card">
+
+        <iframe
+        width="100%"
+        height="220"
+        src="https://www.youtube.com/embed/ixkQaZXVQjs"
+        title="Treino"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+         allowfullscreen>
+        </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Treino de Peito</h3>
+
+                <p>
+                    Exercícios completos para aumentar
+                    força e hipertrofia muscular.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">Hipertrofia</div>
+                    <div class="tag">Peitoral</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div class="card">
+
+            <iframe
+            src="https://www.youtube.com/embed/ml6cT4AZdqI"
+            allowfullscreen>
+            </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Treino de Pernas</h3>
+
+                <p>
+                    Desenvolva pernas fortes com
+                    exercícios completos.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">Pernas</div>
+                    <div class="tag">Força</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div class="card">
+
+            <iframe
+            src="https://www.youtube.com/embed/AnYl6Nk9GOA"
+            allowfullscreen>
+            </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Treino de Abdômen</h3>
+
+                <p>
+                    Exercícios intensos para definição
+                    abdominal e resistência.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">Abdômen</div>
+                    <div class="tag">Definição</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+
+        <div class="card">
+
+            <iframe
+            src="https://www.youtube.com/embed/gC_L9qAHVJ8"
+            allowfullscreen>
+            </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Cardio HIIT</h3>
+
+                <p>
+                    Queime gordura rápido com treino
+                    cardio de alta intensidade.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">HIIT</div>
+                    <div class="tag">Cardio</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 5 -->
+
+        <div class="card">
+
+            <iframe
+            src="https://www.youtube.com/embed/2pLT-olgUJs"
+            allowfullscreen>
+            </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Treino de Costas</h3>
+
+                <p>
+                    Fortaleça suas costas e melhore
+                    sua postura corporal.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">Costas</div>
+                    <div class="tag">Postura</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 6 -->
+
+        <div class="card">
+
+            <iframe
+            src="https://www.youtube.com/embed/50kH47ZztHs"
+            allowfullscreen>
+            </iframe>
+
+            <div class="card-conteudo">
+
+                <h3>Treino de Ombro</h3>
+
+                <p>
+                    Desenvolva ombros fortes e mais
+                    estabilidade muscular.
+                </p>
+
+                <div class="tags">
+                    <div class="tag">Ombros</div>
+                    <div class="tag">Performance</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DICAS -->
+
+<section class="dicas">
+
+    <h2> Dicas Fitness</h2>
+
+    <div class="dicas-grid">
+
+        <div class="dica">
+
+            <h3> Alimentação</h3>
+
+            <p>
+                Combine treino com alimentação saudável
+                para acelerar seus resultados.
+            </p>
+
+        </div>
+
+        <div class="dica">
+
+            <h3> Hidratação</h3>
+
+            <p>
+                Beba bastante água antes, durante
+                e após os treinos.
+            </p>
+
+        </div>
+
+        <div class="dica">
+
+            <h3> Descanso</h3>
+
+            <p>
+                O descanso muscular é essencial
+                para hipertrofia e recuperação.
+            </p>
+
+        </div>
+
+        <div class="dica">
+
+            <h3> Consistência</h3>
+
+            <p>
+                Resultados aparecem com dedicação
+                e frequência nos treinos.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ROTINA -->
+
+<section class="rotina">
+
+    <h2> Rotina Semanal</h2>
+
+    <div class="rotina-box">
+
+        <div class="rotina-grid">
+
+            <div class="dia">
+
+                <h3>Segunda</h3>
+
+                <p>
+                    Peito + Tríceps<br>
+                    Cardio leve
+                </p>
+
+            </div>
+
+            <div class="dia">
+
+                <h3>Terça</h3>
+
+                <p>
+                    Costas + Bíceps<br>
+                    Abdômen
+                </p>
+
+            </div>
+
+            <div class="dia">
+
+                <h3>Quarta</h3>
+
+                <p>
+                    Pernas completas<br>
+                    Panturrilha
+                </p>
+
+            </div>
+
+            <div class="dia">
+
+                <h3>Quinta</h3>
+
+                <p>
+                    Ombro + Trapézio<br>
+                    Cardio HIIT
+                </p>
+
+            </div>
+
+            <div class="dia">
+
+                <h3>Sexta</h3>
+
+                <p>
+                    Full Body<br>
+                    Abdômen intenso
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Star Fitness
+
+</footer>
+
+</body>
+
+</html>
