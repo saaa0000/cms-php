@@ -65,7 +65,7 @@ button:focus-visible,.cadastrar:focus-visible,a:focus-visible{
 
 <a class="logo" href="index.html">Star <span>Fitness</span></a>
 
-<form action="#" onsubmit="event.preventDefault()">
+<form action="api/login.php" method="post" data-auth="login">
   <h1>Login</h1>
   <p class="sub">Acesse sua conta Star Fitness.</p>
 
@@ -83,9 +83,10 @@ button:focus-visible,.cadastrar:focus-visible,a:focus-visible{
 
   <button type="submit">Entrar</button>
 
+  <p id="mensagem-formulario" role="alert" hidden></p>
+
   <p class="aviso">Ainda não tem cadastro?</p>
-  <a class="cadastrar" href="cadastro(1).html">Cadastrar-se</a>
-</form>
+  <a class="cadastrar" href="cadastro.html">Cadastrar-se</a></form>
 
 </body>
 </html>
