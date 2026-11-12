@@ -61,7 +61,7 @@ button:focus-visible,a:focus-visible{
 
 <a class="logo" href="index.html">Star <span>Fitness</span></a>
 
-<form action="#" onsubmit="event.preventDefault()">
+<form action="api/cadastro.php" method="post" data-auth="cadastro">
   <h1>Criar conta</h1>
   <p class="sub">Cadastre-se para acessar seus treinos e planos.</p>
 
@@ -95,8 +95,15 @@ button:focus-visible,a:focus-visible{
   </div>
 
   <button type="submit">Cadastrar-se</button>
-  <p class="aviso">Já tem conta? <a href="login(1).html">Entrar</a></p>
+  <p id="mensagem-formulario" role="alert" hidden></p>
+
+  <p class="aviso">
+    Já tem conta?
+    <a href="login.html">Entrar</a>
+  </p>
 </form>
+
+<script src="js/formularios-auth.js" defer></script>
 
 </body>
 </html>
